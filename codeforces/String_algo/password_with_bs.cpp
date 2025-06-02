@@ -66,6 +66,14 @@ pair<int, int> get_hash(int i, int j) {
   hs.second = 1LL * hs.second * ipw[i].second % mod2;
   return hs;
 }
+bool check(int it) {
+  for (int i = 1; i + it - 1 < n - 1; i++) {
+    if (get_hash(i, i + it - 1) == get_hash(0, it - 1)) {
+      return true;
+    }
+  }
+  return false;
+}
 int32_t main() {
   ios_base::sync_with_stdio(0);
   cin.tie(0);
@@ -83,26 +91,23 @@ int32_t main() {
     cout << "Just a legend\n";
     return 0;
   }
-  sort(v.rbegin(), v.rend());
-  int ans = 0;
-  for (auto it : v) {
-    auto need = get_hash(0, it - 1);
-    bool f = false;
-    for (int i = 1; i + it - 1 <= n - 2; i++) {
-      if (get_hash(i, i + it - 1) == need) {
-        f = true;
-        break;
-      }
+  sort(v.begin(), v.end());
+  int ans = -1;
+  int l = 0, h = (int)v.size() - 1;
+  while (l <= h) {
+    int mid = l + (h - l) / 2;
+    if (check(v[mid])) {
+      ans = mid;
+      l = mid + 1;
     }
-    if (f) {
-      ans = it;
-      break;
+    else {
+      h = mid - 1;
     }
   }
-  if (ans == 0) {
+  if (ans == -1) {
     cout << "Just a legend\n";
   } else {
-    cout << s.substr(0, ans) << "\n";
+    cout << s.substr(0, v[ans]) << "\n";
   }
   return 0;
 }
