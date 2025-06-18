@@ -14,11 +14,27 @@ using ld   =  long double;
 
 const ld pi = acos(-1);
 
+ll find_digit(ll k) {
+	ll len = 1;
+	ll cnt = 9;
+	ll start = 1;
+
+	while (k > len * cnt) {
+		k -= len * cnt;
+		len++;
+		cnt *= 10;
+		start *= 10;
+	}
+
+	ll num = start + (k - 1) / len;
+	string stnum = to_string(num);
+	ll digi = (k - 1) % len;
+	return stnum[digi] - '0';
+}
+
 void Plz_Ac() {
-	string s = "0123456789";
-	ll k; cin >> k;
-	ll ans = k % 10;
-	cout << s[ans] << endl;
+	ll n; cin >> n;
+	cout << find_digit(n) << endl;
 }
 
 int main() {
