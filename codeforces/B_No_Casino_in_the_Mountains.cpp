@@ -15,14 +15,24 @@ using ld   =  long double;
 const ld pi = acos(-1);
 
 void Plz_Ac() {
-	ll a, b; cin >> a >> b;
-	if (a < b)swap(a, b);
-	if ((a + b) % 3 == 0 and a <= 2 * b) {
-		cout << "YES" << endl;
+	int n, k; cin >> n >> k;
+	vector<int>v(n);
+	for (auto &it : v)cin >> it;
+	int ans = 0;
+	int i = 0;
+	while (i < n) {
+		if (v[i] == 1) {
+			i++;
+			continue;
+		}
+		int j = i;
+		while (j < n and v[j] == 0) {
+			j++;
+		}
+		ans += ((j - i) + 1) / (k + 1);
+		i = j;
 	}
-	else {
-		cout << "NO" << endl;
-	}
+	cout << ans << endl;
 }
 
 int main() {

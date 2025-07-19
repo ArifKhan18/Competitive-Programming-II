@@ -15,14 +15,9 @@ using ld   =  long double;
 const ld pi = acos(-1);
 
 void Plz_Ac() {
-	ll a, b; cin >> a >> b;
-	if (a < b)swap(a, b);
-	if ((a + b) % 3 == 0 and a <= 2 * b) {
-		cout << "YES" << endl;
-	}
-	else {
-		cout << "NO" << endl;
-	}
+	string s; cin >> s;
+	sort(all(s));
+	cout << s[0] << endl;
 }
 
 int main() {

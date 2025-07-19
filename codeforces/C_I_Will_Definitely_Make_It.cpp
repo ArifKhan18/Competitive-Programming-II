@@ -15,9 +15,29 @@ using ld   =  long double;
 const ld pi = acos(-1);
 
 void Plz_Ac() {
-	ll a, b; cin >> a >> b;
-	if (a < b)swap(a, b);
-	if ((a + b) % 3 == 0 and a <= 2 * b) {
+	int n, k; cin >> n >> k;
+	vector<int>v(n);
+	for (auto &it : v)cin >> it;
+	vector<pair<int, int>>vp;
+	for (int i = 0; i < n; i++) {
+		vp.push_back({v[i], i});
+	}
+	sort(all(vp));
+	int myindex = k - 1;
+	int myh = v[myindex];
+	int t = 0;
+	for (auto [a, b] : vp) {
+		if (a <= myh) continue;
+		int needt = abs(myh - a);
+		t += needt;
+		if (t > myh) {
+			cout << "NO" << endl;
+			return;
+		}
+		myh = a;
+		myindex = b;
+	}
+	if (myh == vp[sz(vp) - 1].first) {
 		cout << "YES" << endl;
 	}
 	else {

@@ -13,22 +13,17 @@ using ld   =  long double;
 #define sz(x)           (int)x.size()
 
 const ld pi = acos(-1);
+const ll mod = 1e9 + 7;
+const ll mxn = 1e5 + 5;
 
 void Plz_Ac() {
-	ll a, b; cin >> a >> b;
-	if (a < b)swap(a, b);
-	if ((a + b) % 3 == 0 and a <= 2 * b) {
-		cout << "YES" << endl;
-	}
-	else {
-		cout << "NO" << endl;
-	}
+	cout << "arif" << endl;
 }
 
 int main() {
 	FastIo;
 	int test = 1;
-	cin >> test;
+	//cin >> test;
 	while (test--) {
 		Plz_Ac();
 	}
